@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zakazi index{% endblock %}
+
+{% block body %}
+    <h1>Zakazi {{ string }}</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tovar</th>
+            <th>Amount</th> 
+        </tr>
+        </thead>
+        <tbody>
+        {% for zakazi in zakazis %}
+            <tr>
+                <td>{{ zakazi.id }}</td>
+                <td>{{ zakazi.tovar }}</td>
+                <td>{{ zakazi.amount }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

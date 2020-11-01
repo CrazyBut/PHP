@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zakazchiki index{% endblock %}
+
+{% block body %}
+    <h1>Zakazchiki</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for zakazchiki in zakazchikis %}
+            <tr>
+                <td>{{ zakazchiki.id }}</td>
+                <td>{{ zakazchiki.Name }}</td>
+                <td>{{ zakazchiki.Score }}</td>
+                <td>
+                    <a href="{{ path('zakazchiki_show', {'id': zakazchiki.id}) }}">show</a>
+                    <a href="{{ path('zakazchiki_edit', {'id': zakazchiki.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('zakazchiki_new') }}">Create new</a>
+
+    <h2> Otchet </h2>
+    <form action="{{ url('otchet') }}" method="get">
+        <p><input name="name" type="text"></p>
+        <p><input type="submit"></p>
+    </form>
+{% endblock %}

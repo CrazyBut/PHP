@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Zakazi{% endblock %}
+
+{% block body %}
+    <h1>Edit Zakazi</h1>
+
+    {{ include('zakazi/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('zakazi_index') }}">back to list</a>
+
+    {{ include('zakazi/_delete_form.html.twig') }}
+{% endblock %}

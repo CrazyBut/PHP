@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Zakazi{% endblock %}
+
+{% block body %}
+    <h1>Create new Zakazi</h1>
+
+    {{ include('zakazi/_form.html.twig') }}
+
+    <a href="{{ path('zakazi_index') }}">back to list</a>
+{% endblock %}
