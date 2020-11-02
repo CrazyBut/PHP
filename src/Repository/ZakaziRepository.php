@@ -57,16 +57,4 @@ class ZakaziRepository extends ServiceEntityRepository
         return $result;
 
     }
-
-    /*
-    public function findOneBySomeField($value): ?Zakazi
-    {
-        return $this->createQueryBuilder('z')
-            ->andWhere('z.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
