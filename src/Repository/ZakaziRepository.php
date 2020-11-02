@@ -26,15 +26,36 @@ class ZakaziRepository extends ServiceEntityRepository
     public function findtoBy($value)
     {
         $zakazi = $this->findBy(['Zakazchik' => $value]);
-        for ($i = 0; $i < count($zakazi); $i++) {
-            for ($j = $i + 1; $j < count($zakazi); $j++) {
-                if ($zakazi[$i]->getTovar() == $zakazi[$j]->getTovar()) {
-                    $zakazi[$i]->setAmount($zakazi[$i]->getAmount() + $zakazi[$j]->getAmount());
-                    unset($zakazi[$j]);
+        if (empty($zakazi)) {
+            return $zakazi;
+        }
+        foreach ($zakazi as &$item1) {
+            foreach ($zakazi as &$item2) {
+                if (!($item1 == $item2)) {
+                    if ($item1->getTovar() == $item2->getTovar()) {
+                        $item1->setamount($item1->getAmount() + $item2->getAmount());
+                        unset($item2);
+                    }
                 }
             }
+            unset($item2);
         }
-        return $zakazi;
+        unset($item1);
+        foreach ($zakazi as $item) {
+            $resultt = array_shift($zakazi);
+            if (empty($zakazi)) {
+                break;
+            }
+            while ($zakazi[0]->getTovar() == $resultt->gettovar()) {
+                array_shift($zakazi);
+                if (empty($zakazi)) {
+                    break;
+                }
+            }
+            $result[] = $resultt;
+        }
+        return $result;
+
     }
 
     /*
